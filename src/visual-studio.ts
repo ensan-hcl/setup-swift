@@ -49,8 +49,8 @@ export function vsRequirement({ version }: Package): VsRequirement {
 /// Do swift version based additional support files setup
 async function setupSupportFiles({ version }: Package, vsInstallPath: string) {
   core.info(`setupSupportFiles version: ${version}`)
-  core.info(`setupSupportFiles semver.lt(version, "5.4.2"): ${semver.lt(version, "5.4.2"), { loose: true }}`)
-  if (semver.lt("v" + version, "5.4.2", { loose: true })) {
+  core.info(`setupSupportFiles semver.lt(version, "5.4.2"): ${semver.lt(version + ".0", "5.4.2")}`)
+  if (semver.lt(version + ".0", "5.4.2", { loose: true })) {
     /// https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170
     const nativeToolsScriptx86 = path.join(
       vsInstallPath,

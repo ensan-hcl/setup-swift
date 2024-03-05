@@ -130,7 +130,7 @@ export function verify(version: string, system: System) {
   if (matchingVersion === null) {
     throw new Error(`Version "${version}" is not available`);
   }
-  let s = new semver.SemVer("v" + matchingVersion, { loose: true });
+  let s = new semver.SemVer(matchingVersion + ".0", { loose: true });
   
   core.info(`Found matching version ${s}`);
 
