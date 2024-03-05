@@ -75,11 +75,12 @@ export async function install(version: string, system: System) {
 
   core.debug(`Swift installed at "${swiftInstallPath}"`);
   await setupVsTools(swiftPkg);
+  core.info("Install finished");
 }
 
 async function download({ url, name }: Package) {
-  core.debug("Downloading Swift for windows");
-
+  core.info("Downloading Swift for windows");
+  core.info(url)
   let [exe, signature] = await Promise.all([
     toolCache.downloadTool(url),
     toolCache.downloadTool(`${url}.sig`),

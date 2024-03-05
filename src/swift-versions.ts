@@ -3,9 +3,9 @@ import * as core from "@actions/core";
 import { System, OS } from "./os";
 
 const VERSIONS_LIST: [string, OS[]][] = [
-  ["5.9.2", [OS.MacOS, OS.Ubuntu]],
-  ["5.9.1", [OS.MacOS, OS.Ubuntu]],
-  ["5.9", [OS.MacOS, OS.Ubuntu]],
+  ["5.9.2", OS.all()],
+  ["5.9.1", OS.all()],
+  ["5.9", OS.all()],
   ["5.8.1", [OS.MacOS, OS.Ubuntu]],
   ["5.8", [OS.MacOS, OS.Ubuntu]],
   ["5.7.3", [OS.MacOS, OS.Ubuntu]],
@@ -130,8 +130,9 @@ export function verify(version: string, system: System) {
   if (matchingVersion === null) {
     throw new Error(`Version "${version}" is not available`);
   }
-
-  core.debug(`Found matching version ${matchingVersion}`);
+  let s = new semver.SemVer(matchingVersion + ".0", { loose: true });
+  
+  core.info(`Found matching version ${s}`);
 
   return matchingVersion;
 }

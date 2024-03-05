@@ -43,7 +43,9 @@ export async function refreshKeys() {
 }
 
 function refreshKeysFromServer(server: string): Promise<boolean> {
-  return exec(`gpg --keyserver ${server} --refresh-keys Swift`)
+  // Following https://www.swift.org/install/windows/#code-signing-on-windows
+  const refreshKeys = 'Swift'
+  return exec(`gpg --keyserver ${server} --refresh-keys ${refreshKeys}`)
     .then((code) => code === 0)
     .catch((error) => {
       core.warning(

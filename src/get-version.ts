@@ -1,4 +1,5 @@
 import { exec } from "@actions/exec";
+import * as core from "@actions/core";
 
 export async function getVersion(
   command: string = "swift",
@@ -17,7 +18,7 @@ export async function getVersion(
       },
     },
   };
-
+  core.info(`output: ${output}`)
   await exec(command, args, options);
 
   if (!output && error) {

@@ -24,7 +24,7 @@ async function run() {
       case system.OS.Windows:
         await windows.install(version, platform);
     }
-
+    core.info("Getting version ...")
     const current = await getVersion();
     if (current === version) {
       core.setOutput("version", version);

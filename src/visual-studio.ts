@@ -48,7 +48,9 @@ export function vsRequirement({ version }: Package): VsRequirement {
 
 /// Do swift version based additional support files setup
 async function setupSupportFiles({ version }: Package, vsInstallPath: string) {
-  if (semver.lt(version, "5.4.2")) {
+  core.info(`setupSupportFiles version: ${version}`)
+  core.info(`setupSupportFiles semver.lt(version, "5.4.2"): ${semver.lt(version + ".0", "5.4.2")}`)
+  if (semver.lt(version + ".0", "5.4.2", { loose: true })) {
     /// https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170
     const nativeToolsScriptx86 = path.join(
       vsInstallPath,
@@ -109,6 +111,7 @@ export async function setupVsTools(pkg: Package) {
     ) +
     ` --quiet`;
 
+  core.info("VS Code is installed")
   // install required visual studio components
   const code = await exec(
     `"${vs.properties.setupEngineFilePath}" ${vsInstallerExec}`,
@@ -119,8 +122,10 @@ export async function setupVsTools(pkg: Package) {
       `Visual Studio installer failed to install required components with exit code: ${code}.`
     );
   }
+  core.info("VS Code is installed 2")
 
   await setupSupportFiles(pkg, vs.installationPath);
+  core.info("VS Code is installed 3")
 }
 
 /// Get vswhere and vs_installer paths
