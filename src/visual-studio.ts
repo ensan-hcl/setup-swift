@@ -109,11 +109,13 @@ export async function setupVsTools(pkg: Package) {
     ) +
     ` --quiet`;
 
+  core.info("VS Code is installed")
   // install required visual studio components
   const code = await exec(
     `"${vs.properties.setupEngineFilePath}" ${vsInstallerExec}`,
     []
   );
+  core.info("VS Code is installed 2")
   if (code != 0) {
     throw new Error(
       `Visual Studio installer failed to install required components with exit code: ${code}.`
