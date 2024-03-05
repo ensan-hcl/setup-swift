@@ -29,8 +29,8 @@ jobs:
         #   swift: "5.9.2"
         # - os: ubuntu-22.04
         #   swift: "5.9.2"
-        # - os: windows-latest
-        #   swift: "5.9.0"
+        - os: windows-latest
+          swift: "5.9.0"
     steps:
     - uses: actions/checkout@v4
     - run: npm install
