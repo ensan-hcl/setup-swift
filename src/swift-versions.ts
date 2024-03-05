@@ -130,8 +130,11 @@ export function verify(version: string, system: System) {
   if (matchingVersion === null) {
     throw new Error(`Version "${version}" is not available`);
   }
+  if (typeof matchingVersion != 'string') {
+    throw new Error(`"${version}" is not a string`);
+  }
 
-  core.debug(`Found matching version ${matchingVersion}`);
+  core.info(`Found matching version ${matchingVersion}`);
 
   return matchingVersion;
 }
