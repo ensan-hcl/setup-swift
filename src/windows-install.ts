@@ -78,8 +78,8 @@ export async function install(version: string, system: System) {
 }
 
 async function download({ url, name }: Package) {
-  core.debug("Downloading Swift for windows");
-
+  core.info("Downloading Swift for windows");
+  core.info(url)
   let [exe, signature] = await Promise.all([
     toolCache.downloadTool(url),
     toolCache.downloadTool(`${url}.sig`),
