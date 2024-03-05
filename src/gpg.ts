@@ -45,7 +45,7 @@ export async function refreshKeys() {
 function refreshKeysFromServer(server: string): Promise<boolean> {
   // Following https://www.swift.org/install/windows/#code-signing-on-windows
   const refreshKeys = 'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561  8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA'
-  return exec(`gpg --keyserver ${server} --refresh-keys ${refreshKeys}`)
+  return exec(`gpg --keyserver ${server} --refresh-keys "${refreshKeys}"`)
     .then((code) => code === 0)
     .catch((error) => {
       core.warning(
