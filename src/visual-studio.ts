@@ -115,14 +115,15 @@ export async function setupVsTools(pkg: Package) {
     `"${vs.properties.setupEngineFilePath}" ${vsInstallerExec}`,
     []
   );
-  core.info("VS Code is installed 2")
   if (code != 0) {
     throw new Error(
       `Visual Studio installer failed to install required components with exit code: ${code}.`
     );
   }
+  core.info("VS Code is installed 2")
 
   await setupSupportFiles(pkg, vs.installationPath);
+  core.info("VS Code is installed 3")
 }
 
 /// Get vswhere and vs_installer paths
