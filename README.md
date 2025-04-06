@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Ubuntu%20%7C%20Windows-lightgray" alt="Supports macOS, Ubuntu & Windows" />
   </a>
   <a href="https://swift.org">
-    <img src="https://img.shields.io/badge/Swift-5.9.2-F05138?logo=swift&logoColor=white" alt="Swift 5.9.2" />
+    <img src="https://img.shields.io/badge/Swift-6.0.2-F05138?logo=swift&logoColor=white" alt="Swift 6.0.2" />
   </a>
   <a href="https://github.com/swift-actions/setup-swift/releases/latest">
     <img src="https://img.shields.io/github/v/release/swift-actions/setup-swift?sort=semver" alt="Latest release" />
@@ -21,20 +21,20 @@
 To run the action with the latest swift version available, simply add the action as a step in your workflow:
 
 ```yaml
-- uses: swift-actions/setup-swift@v1
+- uses: swift-actions/setup-swift@v2
 ```
 
 After the environment is configured you can run swift commands using the standard [`run`](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsrun) step:
 ```yaml
-- uses: swift-actions/setup-swift@v1
+- uses: swift-actions/setup-swift@v2
 - name: Get swift version
-  run: swift --version # Swift 5.9.2
+  run: swift --version # Swift 6.0.2
 ```
 
 A specific Swift version can be set using the `swift-version` input:
 
 ```yaml
-- uses: swift-actions/setup-swift@v1
+- uses: swift-actions/setup-swift@v2
   with:
     swift-version: "5.1.0"
 - name: Get swift version
@@ -51,7 +51,7 @@ strategy:
     os: [ubuntu-latest, macos-latest]
     swift: ["5.4.3", "5.2.4"]
 steps:
-- uses: swift-actions/setup-swift@v1
+- uses: swift-actions/setup-swift@v2
   with:
     swift-version: ${{ matrix.swift }}
 - name: Get swift version
@@ -68,14 +68,14 @@ For example, Swift is available as version `5.1` but using this as value for `sw
 In other words specifying...
 - `"5.1.0"` will resolve to version `5.1`
 - `"5.1"` will resolve to latest patch version (aka `5.1.1`)
-- `"5"` will resolve to latest minor and patch version (aka `5.9.2`)
+- `"5"` will resolve to latest minor and patch version (aka `5.10`)
 
 ### Caveats
 
 YAML interprets eg. `5.0` as a float, this action will then interpret that as `5` which will result in eg. Swift 5.5 being resolved. Quote your inputs! Thus:
 
 ```
-- uses: swift-actions/setup-swift@v1
+- uses: swift-actions/setup-swift@v2
   with:
     swift-version: '5.0'
 ```
@@ -83,14 +83,14 @@ YAML interprets eg. `5.0` as a float, this action will then interpret that as `5
 Not:
 
 ```
-- uses: swift-actions/setup-swift@v1
+- uses: swift-actions/setup-swift@v2
   with:
     swift-version: 5.0
 ```
 
 ## Keeping the action up-to-date
 
-You have two options for keeping this action up-to-date: either you define a specific version (like `v1.17.0`) or use the major version tag (like `v1`).
+You have two options for keeping this action up-to-date: either you define a specific version (like `v2.0.1`) or use the major version tag (like `v2`).
 
 ### Specific version
 

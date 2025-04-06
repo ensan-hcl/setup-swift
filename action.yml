@@ -5,12 +5,12 @@ inputs:
   swift-version: 
     description: Swift version to configure
     required: true
-    default: '5.9.2'
+    default: '5.10'
 outputs:
   version:
     description: The full Swift version that was configured
 runs:
-  using: node16
+  using: node20
   main: dist/index.js
 branding:
   icon: 'command'  
